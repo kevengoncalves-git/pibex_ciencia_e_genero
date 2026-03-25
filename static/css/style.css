@@ -1,0 +1,127 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  height: 100vh;
+  background: linear-gradient(135deg, #d9c2ff, #f3e8ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* CONTAINER */
+.container {
+  width: 100%;
+  max-width: 900px;
+  padding: 20px;
+}
+
+/* CARD */
+.card {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+/* TOPO ROXO */
+.card-top {
+  background: linear-gradient(135deg, #7b2cbf, #9d4edd);
+  color: white;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.card-top h2 {
+  margin-bottom: 10px;
+}
+
+.card-top p {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* CORPO */
+.card-body {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* LABEL */
+label {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* INPUT COM ÍCONE */
+.input-box {
+  display: flex;
+  align-items: center;
+  background: #f3e8ff;
+  border-radius: 30px;
+  padding: 10px 15px;
+}
+
+.input-box span {
+  margin-right: 10px;
+}
+
+.input-box input {
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+}
+
+/* SELECT */
+select {
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background: #f3e8ff;
+}
+
+/* TEXTAREA */
+textarea {
+  min-height: 120px;
+  border-radius: 10px;
+  border: none;
+  padding: 12px;
+  background: #f3e8ff;
+  resize: none;
+}
+
+/* BOTÃO */
+button {
+  margin-top: 10px;
+  padding: 14px;
+  border: none;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #7b2cbf, #c77dff);
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(123,44,191,0.3);
+}
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+  .card-body {
+    padding: 25px;
+  }
+
+  .card-top {
+    padding: 30px 15px;
+  }
+}

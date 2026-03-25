@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Ciência e Gênero</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/home_style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="header">
+  <div class="logo">Ciência e Gênero</div>
+  <nav>
+    <a href="#">INICIO</a>
+    <button class="btn-primary">INSCREVA-SE</button>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-text">
+    <h1>Ciência e Gênero:<br> fortalecendo a representatividade feminina no ensino básico</h1>
+    <p>Formação docente para uma educação científica mais equitativa e inclusiva</p>
+
+    <div class="hero-buttons">
+      <button class="btn-primary">Conheça o projeto</button>
+      <button class="btn-outline">Acesse os Materiais</button>
+    </div>
+  </div>
+
+  <div class="hero-img">
+    <img src="static\img\cientistas.png" alt="grupo de mulheres">
+  </div>
+</section>
+
+<section class="cards">
+  <div class="card">Formação de Professores</div>
+  <div class="card">Ciência, Tecnologia e Sociedade</div>
+  <div class="card">Mulheres na História da Ciência</div>
+</section>
+
+<section class="sobre">
+    <div class="sobre-container">
+        <div class="sobre-content">
+            <h2>Sobre o Projeto</h2>
+            <p>Promovendo a igualdade de gênero na ciência e na educação.</p>
+            
+            <div class="sobre-grid-cards">
+                <div class="box-card">
+                    <div class="icon-placeholder">
+                        <img src="" alt="Ícone Objetivos"> </div>
+                    <span>Objetivos</span>
+                </div>
+
+                <div class="box-card">
+                    <div class="icon-placeholder">
+                        <img src="" alt="Ícone Público-Alvo"> </div>
+                    <span>Público-Alvo</span>
+                </div>
+
+                <div class="box-card">
+                    <div class="icon-placeholder">
+                        <img src="" alt="Ícone Metodologia"> </div>
+                    <span>Metodologia</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="sobre-imagem-lateral">
+            <img src="{{ url_for('static', filename='img/sobre-ilustracao.png') }}" alt="Ilustração Mulheres na Ciência">
+        </div>
+    </div>
+</section>
+
+<section class="fundamentacao">
+    <h2>Fundamentação Teórica</h2>
+    <div class="fundamentacao-gradient-container">
+        <div class="step">Pedagogia histórico-crítica</div>
+        <div class="step">Abordagem CTS</div>
+        <div class="step">Gênero e ciência</div>
+        <div class="step">Educação inclusiva</div>
+    </div>
+</section>
+
+<section class="materiais">
+    <div class="linha-decorativa"></div>
+    <h2>Materiais Didáticos</h2>
+    
+    <div class="materiais-grid">
+        <div class="card-download">
+            <div class="img-placeholder bg-roxo">
+                <img src="" alt="Apostilas"> </div>
+            <h3>Apostilas</h3>
+            <button class="btn-dl btn-roxo">
+                <i class="fas fa-lock"></i> Download
+            </button>
+        </div>
+
+        <div class="card-download">
+            <div class="img-placeholder bg-azul">
+                <img src="" alt="Sequências Didáticas">
+            </div>
+            <h3>Sequências Didáticas</h3>
+            <button class="btn-dl btn-azul">
+                <i class="fas fa-lock"></i> Download
+            </button>
+        </div>
+
+        <div class="card-download">
+            <div class="img-placeholder bg-laranja">
+                <img src="" alt="Atividades Práticas">
+            </div>
+            <h3>Atividades Práticas</h3>
+            <button class="btn-dl btn-laranja">
+                <i class="fas fa-lock"></i> Download
+            </button>
+        </div>
+
+        <div class="card-download">
+            <div class="img-placeholder bg-verde">
+                <img src="" alt="Planos de Aula">
+            </div>
+            <h3>Planos de Aula</h3>
+            <button class="btn-dl btn-verde">
+                <i class="fas fa-lock"></i> Download
+            </button>
+        </div>
+
+        <div class="card-download">
+            <div class="img-placeholder bg-azul-escuro">
+                <img src="" alt="Plano de Aula">
+            </div>
+            <h3>Plano de Aula</h3>
+            <button class="btn-dl btn-azul-escuro">
+                <i class="fas fa-lock"></i> Download
+            </button>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

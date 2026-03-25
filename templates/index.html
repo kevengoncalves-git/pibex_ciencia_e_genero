@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Plataforma Ciência e Gênero</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+  <div class="card">
+
+    <div class="card-top">
+      <h2>Plataforma Ciência e Gênero</h2>
+      <p>Fortalecendo a Representatividade Feminina</p>
+    </div>
+
+    <div class="card-body">
+      
+      <label>Nome Completo:</label>
+      <div class="input-box">
+        <span>👤</span>
+        <input type="text" placeholder="Seu nome">
+      </div>
+
+      <label>Vínculo Institucional:</label>
+      <select>
+        <option>Discente (Ensino Básico)</option>
+        <option>Professor</option>
+        <option>Pesquisador</option>
+      </select>
+
+      <label>Na sua visão, como a história da ciência é abordada hoje?</label>
+      <textarea placeholder="Digite sua resposta..."></textarea>
+
+      <button>Enviar minha contribuição</button>
+
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>
