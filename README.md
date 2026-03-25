@@ -1,2 +1,2 @@
-# pibex_ciencia_e_genero
+# Pibex Ciência e Gênero
 Site educacional destinado as escolas municipais.
