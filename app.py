@@ -12,6 +12,10 @@ def home():
 def home_page():
     return render_template('home.html')
 
+@app.route('/materiais')
+def materiais():
+    return render_template('materiais.html')
+
 # Rota que recebe os dados do formulário (POST)
 @app.route('/inscrever', methods=['POST'])
 def inscrever():

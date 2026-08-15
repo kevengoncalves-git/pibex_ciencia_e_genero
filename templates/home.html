@@ -2,6 +2,7 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ciência e Gênero</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/home_style.css') }}">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -14,23 +15,28 @@
 
     <!-- LOGO COM IMAGEM -->
     <div class="logo">
-      <img src="static\img\logo-pibex-site.jpg" alt="logo">
+      <img src="{{ url_for('static', filename='img/logo-pibex-site.jpg') }}" alt="logo">
       <span>Ciência e Gênero</span>
     </div>
 
     <!-- MENU -->
-    <nav class="menu">
-      <a href="#">Disciplinas</a>
-      <a href="#">Biblioteca</a>
-      <a href="#">Projetos</a>
-      <a href="#">Suporte</a>
+    <nav class="menu" id="menu">
+      <a href="#disciplinas">Disciplinas</a>
+      <a href="/materiais">Biblioteca</a>
+      <a href="#sobre">Projetos</a>
+      <a href="#fundamentacao">Suporte</a>
     </nav>
 
     <!-- AÇÕES -->
     <div class="actions">
-      <a href="#" class="login">Entrar</a>
-      <button class="btn-gradient">Inscreva-se</button>
+      <a href="/" class="login">Entrar</a>
+      <a href="/" class="btn-gradient">Inscreva-se</a>
     </div>
+
+    <!-- BOTÃO HAMBÚRGUER (MOBILE) -->
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">
+      &#9776;
+    </button>
 
   </div>
 
@@ -42,23 +48,23 @@
     <p>Formação docente para uma educação científica mais equitativa e inclusiva</p>
 
     <div class="hero-buttons">
-      <button class="btn-outline">Conheça o projeto</button> <!-- btn-primary-->
-      <button class="btn-outline">Acesse os Materiais</button>
+      <a href="#sobre" class="btn-outline">Conheça o projeto</a>
+      <a href="/materiais" class="btn-outline">Acesse os Materiais</a>
     </div>
   </div>
 
   <div class="hero-img">
-    <img src="static\img\cientistas.png" alt="grupo de mulheres">
+    <img src="{{ url_for('static', filename='img/cientistas.png') }}" alt="grupo de mulheres">
   </div>
 </section>
 
-<section class="cards">
+<section class="cards" id="disciplinas">
   <div class="card">Formação de Professores</div>
   <div class="card">Ciência, Tecnologia e Sociedade</div>
   <div class="card">Mulheres na História da Ciência</div>
 </section>
 
-<section class="sobre">
+<section class="sobre" id="sobre">
     <div class="sobre-container">
         <div class="sobre-content">
             <h2>Sobre o Projeto</h2>
@@ -91,7 +97,7 @@
     </div>
 </section>
 
-<section class="fundamentacao">
+<section class="fundamentacao" id="fundamentacao">
     <h2>Fundamentação Teórica</h2>
     <div class="fundamentacao-gradient-container">
         <div class="step">Pedagogia histórico-crítica</div>
@@ -101,7 +107,7 @@
     </div>
 </section>
 
-<section class="materiais">
+<section class="materiais" id="materiais">
     <div class="linha-decorativa"></div>
     <h2>Materiais Didáticos</h2>
     
@@ -156,6 +162,24 @@
         </div>
     </div>
 </section>
+
+<script>
+  const menuToggle = document.getElementById('menuToggle');
+  const menu = document.getElementById('menu');
+
+  menuToggle.addEventListener('click', () => {
+    const isOpen = menu.classList.toggle('active');
+    menuToggle.setAttribute('aria-expanded', isOpen);
+  });
+
+  // Fecha o menu mobile ao clicar em um link
+  menu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      menu.classList.remove('active');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
 
 </body>
 </html>
