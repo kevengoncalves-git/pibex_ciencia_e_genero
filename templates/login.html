@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Entrar | Ciência e Gênero</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/auth_style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+  <a href="/home" class="btn-back">&larr; Voltar para o início</a>
+
+  <div class="card">
+
+    <div class="card-top">
+      <h2>Entrar</h2>
+      <p>Plataforma Ciência e Gênero</p>
+    </div>
+
+    <form class="card-body" id="loginForm" novalidate>
+
+      <div class="alert" id="alertBox"></div>
+
+      <label for="email">E-mail:</label>
+      <div class="input-box">
+        <span>✉️</span>
+        <input type="email" id="email" name="email" placeholder="seu@email.com" required>
+      </div>
+
+      <label for="senha">Senha:</label>
+      <div class="input-box">
+        <span>🔒</span>
+        <input type="password" id="senha" name="senha" placeholder="Sua senha" required>
+      </div>
+
+      <button type="submit" id="submitBtn">Entrar</button>
+
+      <p class="auth-switch">Ainda não tem conta? <a href="/cadastro">Cadastre-se</a></p>
+
+    </form>
+
+  </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/auth.js') }}"></script>
+
+</body>
+</html>

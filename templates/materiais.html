@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Materiais Didáticos | Ciência e Gênero</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/home_style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/materiais_style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<!-- NAVBAR (mesmo padrão da home) -->
+<header class="navbar">
+  <div class="nav-container">
+
+    <div class="logo">
+      <img src="{{ url_for('static', filename='img/logo-pibex-site.jpg') }}" alt="logo">
+      <span>Ciência e Gênero</span>
+    </div>
+
+    <nav class="menu" id="menu">
+      <a href="/home#disciplinas">Disciplinas</a>
+      <a href="/materiais" class="active">Biblioteca</a>
+      <a href="/home#sobre">Projetos</a>
+      <a href="/home#fundamentacao">Suporte</a>
+    </nav>
+
+    <div class="actions" id="navActions">
+      <a href="/login" class="login">Entrar</a>
+      <a href="/cadastro" class="btn-gradient">Inscreva-se</a>
+    </div>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">
+      &#9776;
+    </button>
+
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="materiais-hero">
+  <div class="materiais-hero-inner">
+    <div class="materiais-hero-badge">
+      <i class="fa-solid fa-book-open"></i>
+      <span>Acervo Digital</span>
+    </div>
+    <h1>Materiais Didáticos</h1>
+    <p>Explore nossa biblioteca de recursos pedagógicos para uma educação científica equitativa e inclusiva.</p>
+
+    <div class="materiais-hero-stats" id="heroStats"></div>
+  </div>
+</section>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <div class="filter-bar-inner">
+    <div class="search-box">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" id="searchInput" placeholder="Buscar materiais...">
+    </div>
+
+    <div class="filter-divider"></div>
+
+    <div class="category-pills" id="categoryPills"></div>
+  </div>
+</div>
+
+<!-- GRID -->
+<main class="materiais-container">
+  <p class="results-count" id="resultsCount"></p>
+  <div class="materiais-grid-cards" id="materialsGrid"></div>
+  <div class="empty-state" id="emptyState" style="display:none;">
+    <i class="fa-solid fa-book-open"></i>
+    <p>Nenhum material encontrado para esta busca.</p>
+  </div>
+</main>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-card" id="modalCard">
+    <div class="modal-image-wrap">
+      <img id="modalImage" src="" alt="">
+      <button class="modal-close" id="modalClose" aria-label="Fechar">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-badge" id="modalBadge"></div>
+      <h2 id="modalTitle"></h2>
+      <p id="modalDescription"></p>
+      <div class="modal-tags" id="modalTags"></div>
+      <button class="modal-download" id="modalDownload">
+        <i class="fa-solid fa-download"></i>
+        <span id="modalDownloadLabel"></span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/materiais.js') }}"></script>
+<script src="{{ url_for('static', filename='js/auth.js') }}"></script>
+
+<script>
+  // Menu hambúrguer (mesmo comportamento da home)
+  const menuToggle = document.getElementById('menuToggle');
+  const menu = document.getElementById('menu');
+  menuToggle.addEventListener('click', () => {
+    const isOpen = menu.classList.toggle('active');
+    menuToggle.setAttribute('aria-expanded', isOpen);
+  });
+  menu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      menu.classList.remove('active');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+
+</body>
+</html>

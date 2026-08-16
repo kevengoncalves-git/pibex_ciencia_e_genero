@@ -18,6 +18,10 @@
   font-family: 'Poppins', sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--bg-gray);
   color: var(--text-main);
@@ -46,6 +50,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 
   box-shadow: 0 10px 30px rgba(0,0,0,0.08);
 }
@@ -83,6 +88,11 @@ body {
   color: #7b2cbf;
 }
 
+.menu a.active {
+  color: #7b2cbf;
+  font-weight: 700;
+}
+
 /* AÇÕES */
 .actions {
   display: flex;
@@ -96,14 +106,38 @@ body {
   font-weight: 500;
 }
 
-/* BOTÃO GRADIENTE */
+/* ESTADO LOGADO NA NAVBAR */
+.nav-greeting {
+  font-weight: 600;
+  color: var(--purple-dark, #5a189a);
+}
+
+.btn-logout {
+  background: none;
+  border: none;
+  color: #7b2cbf;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+}
+
+.btn-logout:hover {
+  color: #5a189a;
+}
+
+/* BOTÃO GRADIENTE (também usado em <a>) */
 .btn-gradient {
+  display: inline-block;
   padding: 10px 18px;
   border: none;
   border-radius: 25px;
   background: linear-gradient(135deg, #6a0dad, #c77dff);
   color: white;
   font-weight: 600;
+  text-decoration: none;
+  text-align: center;
   cursor: pointer;
   transition: 0.3s;
 }
@@ -111,6 +145,17 @@ body {
 .btn-gradient:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 20px rgba(123,44,191,0.3);
+}
+
+/* BOTÃO HAMBÚRGUER (só aparece no mobile) */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 26px;
+  line-height: 1;
+  color: var(--purple-primary);
+  cursor: pointer;
 }
 
 .header nav {
@@ -140,11 +185,14 @@ body {
 }
 
 .btn-outline {
+  display: inline-block;
   cursor: pointer;
   border: 2px solid var(--purple-primary);
   color: var(--purple-primary) !important;
   padding: 10px 22px;
   border-radius: 50px;
+  text-decoration: none;
+  text-align: center;
   transition: 0.3s;
 }
 
@@ -167,6 +215,13 @@ body {
   line-height: 1.2;
   color: var(--purple-dark);
   margin-bottom: 25px;
+}
+
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 25px;
 }
 
 .hero-img img {
@@ -474,7 +529,54 @@ body {
 }
 
 @media (max-width: 768px) {
-  .hero { flex-direction: column; text-align: center; }
-  .header { padding: 20px; }
-  .header nav { display: none; } /* Menu hamburguer seria ideal aqui */
+  .hero { flex-direction: column; text-align: center; padding: 60px 6%; }
+  .hero-buttons { justify-content: center; }
+  .hero-buttons a { width: 100%; }
+
+  /* Menu vira hambúrguer */
+  .menu-toggle { display: block; }
+
+  .menu {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    left: 0;
+    flex-direction: column;
+    gap: 0;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+    padding: 10px;
+  }
+
+  .menu.active {
+    display: flex;
+  }
+
+  .menu a {
+    padding: 12px 15px;
+    border-radius: 10px;
+  }
+
+  .menu a:hover {
+    background: #f3e8ff;
+  }
+
+  .actions {
+    gap: 8px;
+  }
+
+  .login {
+    display: none; /* mantém só o CTA principal visível no mobile */
+  }
+
+  .btn-gradient {
+    padding: 8px 14px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-text h1 { font-size: 32px; }
 }

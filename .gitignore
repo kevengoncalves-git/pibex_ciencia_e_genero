@@ -1,0 +1,25 @@
+# Variáveis de ambiente / segredos
+.env
+
+# Banco de dados local (SQLite)
+*.db
+*.sqlite
+*.sqlite3
+
+# Ambiente virtual
+venv/
+env/
+.venv/
+
+# Cache e bytecode do Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Editor / SO
+.vscode/
+.idea/
+.DS_Store
+
+# Logs
+*.log
