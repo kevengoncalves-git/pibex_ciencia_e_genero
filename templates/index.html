@@ -2,14 +2,16 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Plataforma Ciência e Gênero</title>
-  <link rel="stylesheet" href="styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
 
 <div class="container">
+
+  <a href="/home" class="btn-back">&larr; Voltar para o início</a>
 
   <div class="card">
 
@@ -18,31 +20,33 @@
       <p>Fortalecendo a Representatividade Feminina</p>
     </div>
 
-    <div class="card-body">
-      
-      <label>Nome Completo:</label>
+    <form class="card-body" action="{{ url_for('inscrever') }}" method="POST">
+
+      <label for="nome">Nome Completo:</label>
       <div class="input-box">
         <span>👤</span>
-        <input type="text" placeholder="Seu nome">
+        <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
       </div>
 
-      <label>Vínculo Institucional:</label>
-      <select>
-        <option>Discente (Ensino Básico)</option>
-        <option>Professor</option>
-        <option>Pesquisador</option>
+      <label for="vinculo">Vínculo Institucional:</label>
+      <select id="vinculo" name="vinculo" required>
+        <option value="Discente (Ensino Básico)">Discente (Ensino Básico)</option>
+        <option value="Professor">Professor</option>
+        <option value="Pesquisador">Pesquisador</option>
       </select>
 
-      <label>Na sua visão, como a história da ciência é abordada hoje?</label>
-      <textarea placeholder="Digite sua resposta..."></textarea>
+      <label for="percepcao">Na sua visão, como a história da ciência é abordada hoje?</label>
+      <textarea id="percepcao" name="percepcao" placeholder="Digite sua resposta..." required></textarea>
 
-      <button>Enviar minha contribuição</button>
+      <button type="submit">Enviar minha contribuição</button>
 
-    </div>
+    </form>
 
   </div>
 
 </div>
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
 
 </body>
 </html>

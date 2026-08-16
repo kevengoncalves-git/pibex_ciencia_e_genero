@@ -28,9 +28,9 @@
     </nav>
 
     <!-- AÇÕES -->
-    <div class="actions" id="navActions">
-      <a href="/login" class="login">Entrar</a>
-      <a href="/cadastro" class="btn-gradient">Inscreva-se</a>
+    <div class="actions">
+      <a href="#" class="login">Entrar</a>
+      <button class="btn-gradient">Inscreva-se</button>
     </div>
 
     <!-- BOTÃO HAMBÚRGUER (MOBILE) -->
@@ -162,26 +162,6 @@
         </div>
     </div>
 </section>
-
-<script src="{{ url_for('static', filename='js/auth.js') }}"></script>
-
-<script>
-  const menuToggle = document.getElementById('menuToggle');
-  const menu = document.getElementById('menu');
-
-  menuToggle.addEventListener('click', () => {
-    const isOpen = menu.classList.toggle('active');
-    menuToggle.setAttribute('aria-expanded', isOpen);
-  });
-
-  // Fecha o menu mobile ao clicar em um link
-  menu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      menu.classList.remove('active');
-      menuToggle.setAttribute('aria-expanded', 'false');
-    });
-  });
-</script>
 
 </body>
 </html>

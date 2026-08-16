@@ -20,24 +20,22 @@ def create_app():
     def home():
         return render_template("index.html")
 
-    @app.route("/home")
-    def home_page():
-        return render_template("home.html")
+@app.route('/home')
+def home_page():
+    return render_template('home.html')
 
-    @app.route("/materiais")
-    def materiais():
-        return render_template("materiais.html")
+# Rota que recebe os dados do formulário (POST)
+@app.route('/inscrever', methods=['POST'])
+def inscrever():
+    nome = request.form.get('nome')
+    vinculo = request.form.get('vinculo')
+    percepcao = request.form.get('percepcao')
 
-    @app.route("/cadastro")
-    def cadastro_page():
-        return render_template("cadastro.html")
-
-    @app.route("/login")
-    def login_page():
-        return render_template("login.html")
-
-    with app.app_context():
-        db.create_all()
+    # Exemplo de salvamento no PostgreSQL
+    # conn = psycopg2.connect("dbname=pibex user=postgres password=...")
+    # cur = conn.cursor()
+    # cur.execute("INSERT INTO inscritos (nome, vinculo, percepcao) VALUES (%s, %s, %s)", (nome, vinculo, percepcao))
+    # conn.commit()
 
     return app
 
