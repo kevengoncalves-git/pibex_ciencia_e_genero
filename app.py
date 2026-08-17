@@ -4,6 +4,7 @@ from flask_cors import CORS
 from config import Config
 from extensions import db
 from auth_routes import auth_bp
+from materiais_routes import materiais_bp
 
 
 def create_app():
@@ -14,6 +15,7 @@ def create_app():
     CORS(app, resources={r"/api/*": {"origins": "*"}})
 
     app.register_blueprint(auth_bp)
+    app.register_blueprint(materiais_bp)
 
     # ---- Páginas do site (frontend já existente) ----
     @app.route("/")

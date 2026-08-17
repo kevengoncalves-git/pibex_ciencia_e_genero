@@ -56,14 +56,20 @@
 <!-- FILTER BAR -->
 <div class="filter-bar">
   <div class="filter-bar-inner">
-    <div class="search-box">
-      <i class="fa-solid fa-magnifying-glass"></i>
-      <input type="text" id="searchInput" placeholder="Buscar materiais...">
+    <div class="filter-bar-left">
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="searchInput" placeholder="Buscar materiais...">
+      </div>
+
+      <div class="filter-divider"></div>
+
+      <div class="category-pills" id="categoryPills"></div>
     </div>
 
-    <div class="filter-divider"></div>
-
-    <div class="category-pills" id="categoryPills"></div>
+    <button class="btn-add-material" id="addMaterialBtn" style="display:none;">
+      <i class="fa-solid fa-plus"></i> Adicionar Material
+    </button>
   </div>
 </div>
 
@@ -95,7 +101,50 @@
         <i class="fa-solid fa-download"></i>
         <span id="modalDownloadLabel"></span>
       </button>
+      <button class="modal-delete" id="modalDeleteBtn" style="display:none;">
+        <i class="fa-solid fa-trash"></i> Remover material
+      </button>
     </div>
+  </div>
+</div>
+
+<!-- MODAL DE ADMINISTRAÇÃO (adicionar material) -->
+<div class="modal-overlay" id="adminModalOverlay">
+  <div class="modal-card admin-modal-card" id="adminModalCard">
+    <div class="admin-modal-header">
+      <h2>Adicionar Material</h2>
+      <button class="modal-close" id="adminModalClose" aria-label="Fechar">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <form id="addMaterialForm" class="admin-form" novalidate>
+      <div class="alert" id="adminAlertBox"></div>
+
+      <label for="matTitle">Título</label>
+      <input type="text" id="matTitle" name="title" required>
+
+      <label for="matCategory">Categoria</label>
+      <input type="text" id="matCategory" name="category" list="categoryOptions" placeholder="Ex: Apostilas" required>
+      <datalist id="categoryOptions"></datalist>
+
+      <label for="matDescription">Descrição curta (aparece no card)</label>
+      <textarea id="matDescription" name="description" rows="2" required></textarea>
+
+      <label for="matFullDescription">Descrição completa (aparece ao abrir o material)</label>
+      <textarea id="matFullDescription" name="fullDescription" rows="4" required></textarea>
+
+      <label for="matImage">URL da imagem</label>
+      <input type="url" id="matImage" name="image" placeholder="https://..." required>
+
+      <label for="matTags">Tags (separadas por vírgula)</label>
+      <input type="text" id="matTags" name="tags" placeholder="Ex: Ensino Médio, Física">
+
+      <label for="matArquivoUrl">Link do arquivo para download (opcional)</label>
+      <input type="url" id="matArquivoUrl" name="arquivoUrl" placeholder="https://...">
+
+      <button type="submit" id="adminSubmitBtn">Salvar material</button>
+    </form>
   </div>
 </div>
 

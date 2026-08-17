@@ -18,3 +18,30 @@ class User(db.Model):
             "email": self.email,
             "criado_em": self.criado_em.isoformat(),
         }
+
+
+class Material(db.Model):
+    __tablename__ = "materiais"
+
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(200), nullable=False)
+    category = db.Column(db.String(100), nullable=False)
+    description = db.Column(db.String(500), nullable=False)
+    full_description = db.Column(db.Text, nullable=False)
+    image = db.Column(db.String(500), nullable=False)
+    tags = db.Column(db.String(300), nullable=True)  # salvas separadas por vírgula
+    arquivo_url = db.Column(db.String(500), nullable=True)
+    criado_por = db.Column(db.String(150), nullable=True)  # e-mail do admin que cadastrou
+    criado_em = db.Column(db.DateTime, default=datetime.utcnow)
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "title": self.title,
+            "category": self.category,
+            "description": self.description,
+            "fullDescription": self.full_description,
+            "image": self.image,
+            "tags": [t.strip() for t in self.tags.split(",")] if self.tags else [],
+            "arquivoUrl": self.arquivo_url,
+        }

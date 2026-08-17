@@ -2,22 +2,15 @@ import re
 import bcrypt
 import jwt
 from datetime import datetime, timedelta, timezone
-from flask import Blueprint, request, jsonify, current_app
+from flask import Blueprint, request, current_app
 
 from extensions import db
 from models import User
+from utils import response
 
 auth_bp = Blueprint("auth", __name__, url_prefix="/api")
 
 EMAIL_REGEX = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
-
-
-def response(status, message, data=None, http_code=200):
-    """Formato padronizado de resposta da API."""
-    body = {"status": status, "message": message}
-    if data is not None:
-        body["data"] = data
-    return jsonify(body), http_code
 
 
 def validar_email(email):
@@ -90,6 +83,12 @@ def login():
     return response(
         "success",
         "Login realizado com sucesso.",
-        data={"token": token, "usuario": usuario.to_dict()},
+        data={
+            "token": token,
+            "usuario": {
+                **usuario.to_dict(),
+                "isAdmin": usuario.email in current_app.config["ADMIN_EMAILS"],
+            },
+        },
         http_code=200,
     )
