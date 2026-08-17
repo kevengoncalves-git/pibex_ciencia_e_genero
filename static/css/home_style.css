@@ -106,7 +106,28 @@ body {
   font-weight: 500;
 }
 
-/* BOTÃO GRADIENTE */
+/* ESTADO LOGADO NA NAVBAR */
+.nav-greeting {
+  font-weight: 600;
+  color: var(--purple-dark, #5a189a);
+}
+
+.btn-logout {
+  background: none;
+  border: none;
+  color: #7b2cbf;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+}
+
+.btn-logout:hover {
+  color: #5a189a;
+}
+
+/* BOTÃO GRADIENTE (também usado em <a>) */
 .btn-gradient {
   display: inline-block;
   padding: 10px 18px;
