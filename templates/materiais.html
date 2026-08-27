@@ -6,6 +6,7 @@
   <title>Materiais Didáticos | Ciência e Gênero</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/home_style.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/materiais_style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/labxchange_style.css') }}">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
@@ -49,41 +50,114 @@
     <h1>Materiais Didáticos</h1>
     <p>Explore nossa biblioteca de recursos pedagógicos para uma educação científica equitativa e inclusiva.</p>
 
+    <!-- ALTERNADOR DE ABAS -->
+    <div class="view-toggle">
+      <button class="view-toggle-btn active" id="toggleMateriaisBtn">
+        <i class="fa-solid fa-book-open"></i> Materiais Didáticos
+      </button>
+      <button class="view-toggle-btn" id="toggleLabxchangeBtn">
+        <i class="fa-solid fa-flask"></i> Simulações LabXchange
+      </button>
+    </div>
+
     <div class="materiais-hero-stats" id="heroStats"></div>
   </div>
 </section>
 
-<!-- FILTER BAR -->
-<div class="filter-bar">
-  <div class="filter-bar-inner">
-    <div class="filter-bar-left">
-      <div class="search-box">
-        <i class="fa-solid fa-magnifying-glass"></i>
-        <input type="text" id="searchInput" placeholder="Buscar materiais...">
+<!-- ======================= ABA: MATERIAIS DIDÁTICOS ======================= -->
+<div id="viewMateriais">
+
+  <!-- FILTER BAR -->
+  <div class="filter-bar">
+    <div class="filter-bar-inner">
+      <div class="filter-bar-left">
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="searchInput" placeholder="Buscar materiais...">
+        </div>
+
+        <div class="filter-divider"></div>
+
+        <div class="category-pills" id="categoryPills"></div>
       </div>
 
-      <div class="filter-divider"></div>
-
-      <div class="category-pills" id="categoryPills"></div>
+      <button class="btn-add-material" id="addMaterialBtn" style="display:none;">
+        <i class="fa-solid fa-plus"></i> Adicionar Material
+      </button>
     </div>
-
-    <button class="btn-add-material" id="addMaterialBtn" style="display:none;">
-      <i class="fa-solid fa-plus"></i> Adicionar Material
-    </button>
   </div>
+
+  <!-- GRID -->
+  <main class="materiais-container">
+    <p class="results-count" id="resultsCount"></p>
+    <div class="materiais-grid-cards" id="materialsGrid"></div>
+    <div class="empty-state" id="emptyState" style="display:none;">
+      <i class="fa-solid fa-book-open"></i>
+      <p>Nenhum material encontrado para esta busca.</p>
+    </div>
+  </main>
+
 </div>
 
-<!-- GRID -->
-<main class="materiais-container">
-  <p class="results-count" id="resultsCount"></p>
-  <div class="materiais-grid-cards" id="materialsGrid"></div>
-  <div class="empty-state" id="emptyState" style="display:none;">
-    <i class="fa-solid fa-book-open"></i>
-    <p>Nenhum material encontrado para esta busca.</p>
-  </div>
-</main>
+<!-- ======================= ABA: SIMULAÇÕES LABXCHANGE ======================= -->
+<div id="viewLabxchange" style="display:none;">
 
-<!-- MODAL -->
+  <!-- BANNER LABXCHANGE -->
+  <section class="labx-banner">
+    <div class="labx-banner-inner">
+      <div class="labx-banner-left">
+        <div class="labx-brand">
+          <div class="labx-logo">X</div>
+          <div>
+            <div class="labx-brand-name">LabXchange</div>
+            <div class="labx-brand-sub">Harvard University</div>
+          </div>
+        </div>
+        <p>Plataforma gratuita de Harvard com simulações interativas, vídeos e recursos de ciências. Curadoria de conteúdos relevantes para o ensino de ciências com perspectiva de gênero.</p>
+      </div>
+
+      <div class="labx-banner-stats" id="labxStats"></div>
+
+      <a href="https://www.labxchange.org" target="_blank" rel="noopener noreferrer" class="labx-visit-link">
+        <i class="fa-solid fa-arrow-up-right-from-square"></i> Visitar LabXchange
+      </a>
+    </div>
+  </section>
+
+  <!-- FILTER BAR -->
+  <div class="labx-filter-bar">
+    <div class="filter-bar-inner">
+      <div class="filter-bar-left">
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="labxSearchInput" placeholder="Buscar simulações...">
+        </div>
+
+        <div class="filter-divider"></div>
+
+        <div class="labx-type-pills" id="labxTypePills"></div>
+      </div>
+
+      <button class="labx-add-btn" id="labxAddBtn" style="display:none;">
+        <i class="fa-solid fa-plus"></i> Adicionar Link
+      </button>
+    </div>
+  </div>
+
+  <!-- GRID -->
+  <main class="materiais-container">
+    <p class="results-count" id="labxResultsCount"></p>
+    <div class="labx-grid" id="labxGrid"></div>
+    <div class="empty-state" id="labxEmptyState" style="display:none;">
+      <i class="fa-solid fa-star"></i>
+      <p>Nenhuma simulação encontrada.</p>
+      <p class="empty-state-sub">Tente outro filtro ou adicione um novo link.</p>
+    </div>
+  </main>
+
+</div>
+
+<!-- MODAL DE DETALHES (Materiais Didáticos) -->
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal-card" id="modalCard">
     <div class="modal-image-wrap">
@@ -148,7 +222,58 @@
   </div>
 </div>
 
+<!-- MODAL DE ADMINISTRAÇÃO (adicionar link LabXchange) -->
+<div class="modal-overlay" id="labxModalOverlay">
+  <div class="modal-card labx-modal-card" id="labxModalCard">
+    <div class="labx-modal-header">
+      <div>
+        <div class="labx-modal-title">
+          <i class="fa-solid fa-flask-vial"></i> Adicionar Simulação
+        </div>
+        <p>Salve um link do LabXchange para a coleção</p>
+      </div>
+      <button class="labx-modal-close" id="labxModalClose" aria-label="Fechar">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <form id="addLabxForm" class="admin-form" novalidate>
+      <div class="alert" id="labxAlertBox"></div>
+
+      <label for="labxUrl">URL da Simulação *</label>
+      <input type="url" id="labxUrl" name="url" placeholder="https://www.labxchange.org/library/items/..." required>
+      <p class="labx-url-warning" id="labxUrlWarning" style="display:none;">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        Esta URL não parece ser do LabXchange. Você pode salvar mesmo assim.
+      </p>
+
+      <label for="labxTitle">Título *</label>
+      <input type="text" id="labxTitle" name="title" placeholder="Ex: Eletroforese em Gel" required>
+
+      <label>Tipo de Conteúdo</label>
+      <div class="labx-type-select" id="labxTypeSelect"></div>
+
+      <label for="labxDescription">Descrição (opcional)</label>
+      <textarea id="labxDescription" name="description" rows="3" placeholder="Descreva brevemente o conteúdo desta simulação..."></textarea>
+
+      <label for="labxTags">Tags (separadas por vírgula)</label>
+      <input type="text" id="labxTags" name="tags" placeholder="Ex: DNA, Ensino Médio, Interativo">
+
+      <label>Ícone</label>
+      <div class="labx-emoji-picker" id="labxEmojiPicker"></div>
+
+      <label>Cor de fundo</label>
+      <div class="labx-gradient-picker" id="labxGradientPicker"></div>
+
+      <button type="submit" id="labxSubmitBtn">
+        <i class="fa-solid fa-plus"></i> Salvar na Coleção
+      </button>
+    </form>
+  </div>
+</div>
+
 <script src="{{ url_for('static', filename='js/materiais.js') }}"></script>
+<script src="{{ url_for('static', filename='js/labxchange.js') }}"></script>
 <script src="{{ url_for('static', filename='js/auth.js') }}"></script>
 
 <script>
@@ -165,6 +290,25 @@
       menuToggle.setAttribute('aria-expanded', 'false');
     });
   });
+
+  // Alternador de abas: Materiais Didáticos <-> Simulações LabXchange
+  const toggleMateriaisBtn = document.getElementById('toggleMateriaisBtn');
+  const toggleLabxchangeBtn = document.getElementById('toggleLabxchangeBtn');
+  const viewMateriais = document.getElementById('viewMateriais');
+  const viewLabxchange = document.getElementById('viewLabxchange');
+  const heroStats = document.getElementById('heroStats');
+
+  function showView(view) {
+    const isMateriais = view === 'materiais';
+    viewMateriais.style.display = isMateriais ? '' : 'none';
+    viewLabxchange.style.display = isMateriais ? 'none' : '';
+    heroStats.style.display = isMateriais ? '' : 'none';
+    toggleMateriaisBtn.classList.toggle('active', isMateriais);
+    toggleLabxchangeBtn.classList.toggle('active', !isMateriais);
+  }
+
+  toggleMateriaisBtn.addEventListener('click', () => showView('materiais'));
+  toggleLabxchangeBtn.addEventListener('click', () => showView('labxchange'));
 </script>
 
 </body>
