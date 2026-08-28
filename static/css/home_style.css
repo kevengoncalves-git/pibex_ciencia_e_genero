@@ -62,6 +62,13 @@ body {
   gap: 10px;
   font-weight: 600;
   color: #6a0dad;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.logo:hover {
+  opacity: 0.85;
 }
 
 .logo img {
@@ -234,25 +241,46 @@ body {
 /* CARDS DE CATEGORIA */
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 25px;
-  padding: 60px 8%;
-  margin-top: -50px; /* Sobreposição elegante */
+  max-width: 1000px;
+  margin: -50px auto 0; /* Sobreposição elegante + centralizado */
+  padding: 0 8% 60px;
 }
 
 .card {
   background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 40px 20px;
   text-align: center;
   border-radius: 20px;
   box-shadow: var(--shadow);
   transition: 0.3s;
   border-bottom: 4px solid transparent;
+  font-weight: 600;
+  color: var(--purple-dark);
+}
+
+.card:nth-child(1) {
+  border-bottom-color: var(--purple-primary);
+  background: #f6effc;
+}
+
+.card:nth-child(2) {
+  border-bottom-color: var(--purple-light);
+  background: #f2e9fd;
+}
+
+.card:nth-child(3) {
+  border-bottom-color: var(--purple-extra-light);
+  background: #f8f1ff;
 }
 
 .card:hover {
   transform: translateY(-10px);
-  border-color: var(--purple-light);
+  box-shadow: 0 14px 34px rgba(123, 44, 191, 0.18);
 }
 
 /* MATERIAIS DIDÁTICOS - GRID MODERNO */
@@ -391,23 +419,24 @@ body {
 }
 
 .sobre-grid-cards {
-    display: flex;
-    gap: 15px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
     margin-top: 30px;
+    align-items: start;
 }
 
 /* Estilização dos Mini Cards (Objetivos, Público, etc) */
 .box-card {
     background: white;
-    flex: 1;
-    padding: 20px 10px;
-    border-radius: 12px;
-    text-align: center;
+    padding: 26px 22px;
+    border-radius: 14px;
+    text-align: left;
     box-shadow: 0 4px 15px rgba(123, 44, 191, 0.08);
     transition: 0.3s;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     gap: 10px;
 }
 
@@ -417,19 +446,47 @@ body {
 }
 
 .icon-placeholder {
-    width: 60px;
-    height: 60px;
+    width: 52px;
+    height: 52px;
     background: #e9d5ff; /* Fundo lilás para o ícone */
     border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-shrink: 0;
 }
 
 .box-card span {
-    font-weight: 600;
-    font-size: 14px;
+    font-weight: 700;
+    font-size: 16px;
     color: var(--purple-dark);
+}
+
+.box-card-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    width: 100%;
+}
+
+.box-card-list li {
+    position: relative;
+    padding-left: 16px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #5c5c66;
+}
+
+.box-card-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 7px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--purple-light);
 }
 
 /* Imagem Lateral */
@@ -519,13 +576,21 @@ body {
         flex-direction: column;
     }
     .sobre-grid-cards {
-        flex-wrap: wrap;
+        grid-template-columns: 1fr;
     }
 }
 
 /* RESPONSIVIDADE */
 @media (max-width: 1100px) {
   .materiais-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 900px) {
+  .cards { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .cards { grid-template-columns: 1fr; margin-top: 30px; }
 }
 
 @media (max-width: 768px) {
@@ -579,4 +644,87 @@ body {
 
 @media (max-width: 480px) {
   .hero-text h1 { font-size: 32px; }
+}
+
+/* ÍCONE FONT AWESOME DENTRO DO icon-placeholder */
+.icon-placeholder i {
+  font-size: 24px;
+  color: var(--purple-primary);
+}
+
+/* RODAPÉ */
+.site-footer {
+  background: var(--purple-dark);
+  color: #e9d5ff;
+  padding: 60px 8% 0;
+}
+
+.footer-inner {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  gap: 40px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.footer-about .logo {
+  color: #fff;
+  margin-bottom: 14px;
+}
+
+.footer-about p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #d8b4fe;
+  max-width: 320px;
+}
+
+.footer-col h4 {
+  color: #fff;
+  font-size: 15px;
+  margin-bottom: 16px;
+}
+
+.footer-col a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #d8b4fe;
+  text-decoration: none;
+  font-size: 14px;
+  margin-bottom: 12px;
+  transition: 0.2s;
+  width: fit-content;
+}
+
+.footer-col a:hover {
+  color: #fff;
+}
+
+.footer-bottom {
+  padding: 20px 0;
+  text-align: center;
+}
+
+.footer-bottom p {
+  font-size: 13px;
+  color: #c084fc;
+}
+
+/* RESPONSIVIDADE DO RODAPÉ */
+@media (max-width: 900px) {
+  .footer-inner {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .site-footer {
+    padding: 40px 6% 0;
+  }
+
+  .footer-inner {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
 }

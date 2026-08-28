@@ -6,6 +6,8 @@
   <title>Ciência e Gênero</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/home_style.css') }}">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="icon" type="image/jpeg" href="{{ url_for('static', filename='img/logo-pibex-site.jpg') }}">
 </head>
 <body>
 
@@ -14,10 +16,10 @@
   <div class="nav-container">
 
     <!-- LOGO COM IMAGEM -->
-    <div class="logo">
+    <a href="/" class="logo">
       <img src="{{ url_for('static', filename='img/logo-pibex-site.jpg') }}" alt="logo">
       <span>Ciência e Gênero</span>
-    </div>
+    </a>
 
     <!-- MENU -->
     <nav class="menu" id="menu">
@@ -73,26 +75,50 @@
             <div class="sobre-grid-cards">
                 <div class="box-card">
                     <div class="icon-placeholder">
-                        <img src="" alt="Ícone Objetivos"> </div>
+                        <i class="fa-solid fa-bullseye"></i>
+                    </div>
                     <span>Objetivos</span>
+                    <ul class="box-card-list">
+                        <li>Valorizar a participação feminina na ciência.</li>
+                        <li>Combater estereótipos de gênero.</li>
+                        <li>Promover uma educação mais inclusiva.</li>
+                        <li>Criar conteúdos científicos interativos.</li>
+                        <li>Estimular a reflexão crítica.</li>
+                    </ul>
                 </div>
 
                 <div class="box-card">
                     <div class="icon-placeholder">
-                        <img src="" alt="Ícone Público-Alvo"> </div>
+                        <i class="fa-solid fa-users"></i>
+                    </div>
                     <span>Público-Alvo</span>
+                    <ul class="box-card-list">
+                        <li>Estudantes do Ensino Fundamental e Médio.</li>
+                        <li>Professores da educação básica.</li>
+                        <li>Redes públicas estadual e municipal.</li>
+                        <li>Comunidade escolar interessada em ciência e gênero.</li>
+                    </ul>
                 </div>
 
                 <div class="box-card">
                     <div class="icon-placeholder">
-                        <img src="" alt="Ícone Metodologia"> </div>
+                        <i class="fa-solid fa-diagram-project"></i>
+                    </div>
                     <span>Metodologia</span>
+                    <ul class="box-card-list">
+                        <li>Abordagem Ciência, Tecnologia e Sociedade (CTS).</li>
+                        <li>Estudos de caso e problematização.</li>
+                        <li>Projetos e atividades práticas.</li>
+                        <li>Uso de recursos audiovisuais e tecnológicos.</li>
+                        <li>Testes e aplicação em escola-piloto.</li>
+                        <li>Avaliação e aprimoramento da plataforma.</li>
+                    </ul>
                 </div>
             </div>
         </div>
 
         <div class="sobre-imagem-lateral">
-            <img src="{{ url_for('static', filename='img/sobre-ilustracao.png') }}" alt="Ilustração Mulheres na Ciência">
+            <img src="https://images.unsplash.com/photo-1580894732930-0babd100d356?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800" alt="Mulheres cientistas trabalhando em laboratório">
         </div>
     </div>
 </section>
@@ -107,63 +133,51 @@
     </div>
 </section>
 
-<section class="materiais" id="materiais">
-    <div class="linha-decorativa"></div>
-    <h2>Materiais Didáticos</h2>
-    
-    <div class="materiais-grid">
-        <div class="card-download">
-            <div class="img-placeholder bg-roxo">
-                <img src="" alt="Apostilas"> </div>
-            <h3>Apostilas</h3>
-            <button class="btn-dl btn-roxo">
-                <i class="fas fa-lock"></i> Download
-            </button>
-        </div>
+<footer class="site-footer">
+  <div class="footer-inner">
 
-        <div class="card-download">
-            <div class="img-placeholder bg-azul">
-                <img src="" alt="Sequências Didáticas">
-            </div>
-            <h3>Sequências Didáticas</h3>
-            <button class="btn-dl btn-azul">
-                <i class="fas fa-lock"></i> Download
-            </button>
-        </div>
-
-        <div class="card-download">
-            <div class="img-placeholder bg-laranja">
-                <img src="" alt="Atividades Práticas">
-            </div>
-            <h3>Atividades Práticas</h3>
-            <button class="btn-dl btn-laranja">
-                <i class="fas fa-lock"></i> Download
-            </button>
-        </div>
-
-        <div class="card-download">
-            <div class="img-placeholder bg-verde">
-                <img src="" alt="Planos de Aula">
-            </div>
-            <h3>Planos de Aula</h3>
-            <button class="btn-dl btn-verde">
-                <i class="fas fa-lock"></i> Download
-            </button>
-        </div>
-
-        <div class="card-download">
-            <div class="img-placeholder bg-azul-escuro">
-                <img src="" alt="Plano de Aula">
-            </div>
-            <h3>Mapas Mentais</h3>
-            <button class="btn-dl btn-azul-escuro">
-                <i class="fas fa-lock"></i> Download
-            </button>
-        </div>
+    <div class="footer-col footer-about">
+      <a href="/" class="logo">
+        <img src="{{ url_for('static', filename='img/logo-pibex-site.jpg') }}" alt="logo">
+        <span>Ciência e Gênero</span>
+      </a>
+      <p>Projeto de extensão dedicado a fortalecer a representatividade feminina no ensino de ciências, com formação docente e materiais didáticos gratuitos.</p>
     </div>
-</section>
+
+    <div class="footer-col">
+      <h4>Navegação</h4>
+      <a href="#disciplinas">Disciplinas</a>
+      <a href="/materiais">Biblioteca</a>
+      <a href="#sobre">Projetos</a>
+      <a href="#fundamentacao">Suporte</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Conta</h4>
+      <a href="/login">Entrar</a>
+      <a href="/cadastro">Inscreva-se</a>
+      <a href="/pesquisa">Pesquisa de percepção</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Contato e Suporte</h4>
+      <a href="mailto:contato@cienciaegenero.org"><i class="fa-solid fa-envelope"></i> contato@cienciaegenero.org</a>
+      <a href="#"><i class="fa-brands fa-instagram"></i> @cienciaegenero</a>
+      <a href="#"><i class="fa-solid fa-circle-question"></i> Perguntas frequentes</a>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; <span id="footerYear"></span> Ciência e Gênero. Todos os direitos reservados.</p>
+  </div>
+</footer>
 
 <script src="{{ url_for('static', filename='js/auth.js') }}"></script>
+
+<script>
+  document.getElementById('footerYear').textContent = new Date().getFullYear();
+</script>
 
 <script>
   const menuToggle = document.getElementById('menuToggle');

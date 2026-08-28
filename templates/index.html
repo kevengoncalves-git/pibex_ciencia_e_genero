@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plataforma Ciência e Gênero</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="icon" type="image/jpeg" href="{{ url_for('static', filename='img/logo-pibex-site.jpg') }}">
+</head>
+<body>
+
+<div class="container">
+
+  <a href="/" class="btn-back">&larr; Voltar para o início</a>
+
+  <div class="card">
+
+    <div class="card-top">
+      <h2>Plataforma Ciência e Gênero</h2>
+      <p>Fortalecendo a Representatividade Feminina</p>
+    </div>
+
+    <form class="card-body" action="{{ url_for('inscrever') }}" method="POST">
+
+      <label for="nome">Nome Completo:</label>
+      <div class="input-box">
+        <span>👤</span>
+        <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+      </div>
+
+      <label for="vinculo">Vínculo Institucional:</label>
+      <select id="vinculo" name="vinculo" required>
+        <option value="Discente (Ensino Básico)">Discente (Ensino Básico)</option>
+        <option value="Professor">Professor</option>
+        <option value="Pesquisador">Pesquisador</option>
+      </select>
+
+      <label for="percepcao">Na sua visão, como a história da ciência é abordada hoje?</label>
+      <textarea id="percepcao" name="percepcao" placeholder="Digite sua resposta..." required></textarea>
+
+      <button type="submit">Enviar minha contribuição</button>
+
+    </form>
+
+  </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+</body>
+</html>

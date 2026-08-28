@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from flask_cors import CORS
 
 from config import Config
@@ -142,11 +142,17 @@ def create_app():
     # ---- Páginas do site (frontend já existente) ----
     @app.route("/")
     def home():
-        return render_template("index.html")
-
-    @app.route("/home")
-    def home_page():
         return render_template("home.html")
+
+    # Mantido só por compatibilidade com links antigos: sempre redireciona
+    # para a raiz, para não existirem duas URLs diferentes para a mesma página.
+    @app.route("/home")
+    def home_redirect():
+        return redirect(url_for("home"))
+
+    @app.route("/pesquisa")
+    def pesquisa():
+        return render_template("index.html")
 
     @app.route("/materiais")
     def materiais():

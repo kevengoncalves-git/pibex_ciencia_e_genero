@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/labxchange_style.css') }}">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="icon" type="image/jpeg" href="{{ url_for('static', filename='img/logo-pibex-site.jpg') }}">
 </head>
 <body>
 
@@ -16,16 +17,16 @@
 <header class="navbar">
   <div class="nav-container">
 
-    <div class="logo">
+    <a href="/" class="logo">
       <img src="{{ url_for('static', filename='img/logo-pibex-site.jpg') }}" alt="logo">
       <span>Ciência e Gênero</span>
-    </div>
+    </a>
 
     <nav class="menu" id="menu">
-      <a href="/home#disciplinas">Disciplinas</a>
+      <a href="/#disciplinas">Disciplinas</a>
       <a href="/materiais" class="active">Biblioteca</a>
-      <a href="/home#sobre">Projetos</a>
-      <a href="/home#fundamentacao">Suporte</a>
+      <a href="/#sobre">Projetos</a>
+      <a href="/#fundamentacao">Suporte</a>
     </nav>
 
     <div class="actions" id="navActions">

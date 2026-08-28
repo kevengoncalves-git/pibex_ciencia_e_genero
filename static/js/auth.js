@@ -104,7 +104,7 @@ if (loginForm) {
       localStorage.setItem("token", data.data.token);
       localStorage.setItem("usuario", JSON.stringify(data.data.usuario));
 
-      window.location.href = "/home";
+      window.location.href = "/";
     } catch (err) {
       showAlert("Erro de conexão com o servidor. Tente novamente.");
     } finally {
@@ -119,7 +119,7 @@ if (loginForm) {
 function logout() {
   localStorage.removeItem("token");
   localStorage.removeItem("usuario");
-  window.location.href = "/home";
+  window.location.href = "/";
 }
 
 function renderAuthNav() {
