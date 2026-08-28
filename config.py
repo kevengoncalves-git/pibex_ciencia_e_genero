@@ -4,9 +4,20 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
+def _normalizar_database_url(url):
+    """Alguns provedores (Render, Heroku, etc.) fornecem a URL do Postgres
+    com o prefixo antigo 'postgres://', que o SQLAlchemy 1.4+ não aceita
+    mais. Aqui convertemos para 'postgresql://' automaticamente."""
+    if url and url.startswith("postgres://"):
+        return url.replace("postgres://", "postgresql://", 1)
+    return url
+
+
 class Config:
-    SECRET_KEY = os.getenv("SECRET_KEY", "cd3d3c25e787ca42a8fd5aea66f3a65a11fa6ab5b741c5c664cbd0dd37bd1826")
-    SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL", "sqlite:///database.db")
+    SECRET_KEY = os.getenv("SECRET_KEY", "troque-esta-chave-em-producao")
+    SQLALCHEMY_DATABASE_URI = _normalizar_database_url(
+        os.getenv("DATABASE_URL", "sqlite:///database.db")
+    )
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     JWT_EXP_HOURS = int(os.getenv("JWT_EXP_HOURS", 24))
 
