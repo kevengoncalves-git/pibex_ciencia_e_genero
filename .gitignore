@@ -23,3 +23,6 @@ __pycache__/
 
 # Logs
 *.log
+
+# Uploads de admin (imagens/PDFs enviados pelo formulário de materiais)
+static/uploads/

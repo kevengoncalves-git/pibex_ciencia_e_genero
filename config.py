@@ -27,3 +27,14 @@ class Config:
         for e in os.getenv("ADMIN_EMAILS", "").split(",")
         if e.strip()
     ]
+
+    # Limite de tamanho para uploads (imagens/PDFs), padrão 15 MB
+    MAX_CONTENT_LENGTH = int(os.getenv("MAX_UPLOAD_MB", 15)) * 1024 * 1024
+
+    # Cloudinary (armazenamento externo dos uploads). Opcional: se essas
+    # três variáveis não estiverem definidas, o sistema salva os arquivos
+    # localmente em static/uploads/ (bom para desenvolvimento; em produção
+    # com disco temporário, os arquivos locais são perdidos a cada deploy).
+    CLOUDINARY_CLOUD_NAME = os.getenv("CLOUDINARY_CLOUD_NAME")
+    CLOUDINARY_API_KEY = os.getenv("CLOUDINARY_API_KEY")
+    CLOUDINARY_API_SECRET = os.getenv("CLOUDINARY_API_SECRET")

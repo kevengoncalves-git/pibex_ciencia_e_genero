@@ -1,7 +1,7 @@
 /* PALETA ESTENDIDA (baseada nas variáveis de home_style.css) */
 :root {
   --p-900: #3c096c;
-  --p-700: #5a189a;
+  --p-700: #562588;
   --p-600: #7b2cbf;
   --p-500: #9d4edd;
   --p-400: #c77dff;
@@ -594,6 +594,96 @@ body {
 .admin-form input:focus,
 .admin-form textarea:focus {
   border-color: var(--p-400);
+}
+
+/* ABAS: ENVIAR ARQUIVO x COLAR LINK */
+.upload-tabs {
+  display: flex;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.upload-tab {
+  flex: 1;
+  padding: 7px 10px;
+  border-radius: 8px;
+  border: 1.5px solid var(--p-100);
+  background: var(--surface);
+  color: var(--text-mid);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.upload-tab.active {
+  background: var(--p-600);
+  border-color: var(--p-600);
+  color: #fff;
+}
+
+/* SELETOR DE ARQUIVO ESTILIZADO */
+.file-picker {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1.5px solid var(--p-100);
+  border-radius: 10px;
+  padding: 6px;
+  background: var(--bg-gray);
+}
+
+.file-picker-btn {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 16px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--p-700), var(--p-500));
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.18s;
+  white-space: nowrap;
+}
+
+.file-picker-btn:hover {
+  opacity: 0.9;
+}
+
+.file-picker-name {
+  font-size: 0.8rem;
+  color: var(--text-mid);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.file-picker-input {
+  /* input real, funcional, mas visualmente escondido — o clique vem do
+     <label for="..."> associado, que abre o seletor de arquivos nativo */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.file-picker:focus-within .file-picker-btn {
+  outline: 2px solid var(--p-400);
+  outline-offset: 2px;
+}
+
+.upload-hint {
+  font-size: 0.72rem;
+  color: var(--text-light);
+  margin-top: 2px;
 }
 
 .admin-form button[type="submit"] {

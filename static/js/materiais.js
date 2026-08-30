@@ -290,8 +290,61 @@ async function excluirMaterialSelecionado() {
 }
 
 // ---- MODAL DE ADMINISTRAÇÃO (adicionar material) ----
+function setupUploadTabs() {
+  document.querySelectorAll(".upload-tabs").forEach((group) => {
+    const target = group.dataset.target; // "Image" ou "Arquivo"
+    const fileWrap = document.getElementById(`mat${target}FileWrap`);
+    const fileInput = document.getElementById(`mat${target}File`);
+    const urlInput = document.getElementById(target === "Image" ? "matImage" : "matArquivoUrl");
+
+    group.querySelectorAll(".upload-tab").forEach((tab) => {
+      tab.addEventListener("click", () => {
+        group.querySelectorAll(".upload-tab").forEach((t) => t.classList.remove("active"));
+        tab.classList.add("active");
+
+        const isFileMode = tab.dataset.mode === "file";
+        fileWrap.style.display = isFileMode ? "" : "none";
+        urlInput.style.display = isFileMode ? "none" : "";
+
+        // limpa o campo escondido, pra não mandar os dois ao mesmo tempo
+        if (isFileMode) {
+          urlInput.value = "";
+        } else {
+          fileInput.value = "";
+          atualizarNomeArquivo(fileInput);
+        }
+      });
+    });
+  });
+
+  // Mostra o nome do arquivo escolhido ao lado do botão "Escolher arquivo"
+  document.querySelectorAll(".file-picker-input").forEach((input) => {
+    input.addEventListener("change", () => atualizarNomeArquivo(input));
+  });
+}
+
+function atualizarNomeArquivo(fileInput) {
+  const nomeEl = document.getElementById(`${fileInput.id}Name`);
+  if (!nomeEl) return;
+  nomeEl.textContent = fileInput.files[0] ? fileInput.files[0].name : "Nenhum arquivo escolhido";
+}
+
 function openAdminModal() {
-  document.getElementById("addMaterialForm").reset();
+  const form = document.getElementById("addMaterialForm");
+  form.reset();
+
+  // volta as abas para o modo "arquivo" (padrão) em cada grupo
+  document.querySelectorAll(".upload-tabs").forEach((group) => {
+    const target = group.dataset.target;
+    const fileWrap = document.getElementById(`mat${target}FileWrap`);
+    const fileInput = document.getElementById(`mat${target}File`);
+    const urlInput = document.getElementById(target === "Image" ? "matImage" : "matArquivoUrl");
+    group.querySelectorAll(".upload-tab").forEach((t, idx) => t.classList.toggle("active", idx === 0));
+    fileWrap.style.display = "";
+    urlInput.style.display = "none";
+    atualizarNomeArquivo(fileInput);
+  });
+
   hideAdminAlert();
   document.getElementById("adminModalOverlay").classList.add("active");
 }
@@ -316,28 +369,42 @@ async function handleAddMaterialSubmit(e) {
   e.preventDefault();
   hideAdminAlert();
 
-  const payload = {
-    title: document.getElementById("matTitle").value.trim(),
-    category: document.getElementById("matCategory").value.trim(),
-    description: document.getElementById("matDescription").value.trim(),
-    fullDescription: document.getElementById("matFullDescription").value.trim(),
-    image: document.getElementById("matImage").value.trim(),
-    tags: document.getElementById("matTags").value.trim(),
-    arquivoUrl: document.getElementById("matArquivoUrl").value.trim(),
-  };
+  const imageFile = document.getElementById("matImageFile").files[0];
+  const imageUrl = document.getElementById("matImage").value.trim();
+  if (!imageFile && !imageUrl) {
+    showAdminAlert("Envie uma imagem (arquivo do computador ou link).");
+    return;
+  }
+
+  // FormData em vez de JSON, porque agora pode ir arquivo binário no corpo
+  const formData = new FormData();
+  formData.append("title", document.getElementById("matTitle").value.trim());
+  formData.append("category", document.getElementById("matCategory").value.trim());
+  formData.append("description", document.getElementById("matDescription").value.trim());
+  formData.append("fullDescription", document.getElementById("matFullDescription").value.trim());
+  formData.append("tags", document.getElementById("matTags").value.trim());
+
+  if (imageFile) formData.append("imageFile", imageFile);
+  else formData.append("image", imageUrl);
+
+  const arquivoFile = document.getElementById("matArquivoFile").files[0];
+  const arquivoUrl = document.getElementById("matArquivoUrl").value.trim();
+  if (arquivoFile) formData.append("arquivoFile", arquivoFile);
+  else if (arquivoUrl) formData.append("arquivoUrl", arquivoUrl);
 
   const submitBtn = document.getElementById("adminSubmitBtn");
   submitBtn.disabled = true;
   submitBtn.textContent = "Salvando...";
 
   try {
+    // Sem "Content-Type" manual: o navegador define o boundary do
+    // multipart/form-data sozinho quando o body é um FormData.
     const res = await fetch(`${MATERIAIS_API_BASE_URL}/materiais`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
         Authorization: `Bearer ${getToken()}`,
       },
-      body: JSON.stringify(payload),
+      body: formData,
     });
 
     const data = await res.json();
@@ -360,6 +427,7 @@ async function handleAddMaterialSubmit(e) {
 // ---- INIT ----
 document.addEventListener("DOMContentLoaded", () => {
   fetchMaterials();
+  setupUploadTabs();
 
   document.getElementById("searchInput").addEventListener("input", (e) => {
     searchTerm = e.target.value;

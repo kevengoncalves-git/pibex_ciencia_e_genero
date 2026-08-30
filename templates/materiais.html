@@ -209,14 +209,38 @@
       <label for="matFullDescription">Descrição completa (aparece ao abrir o material)</label>
       <textarea id="matFullDescription" name="fullDescription" rows="4" required></textarea>
 
-      <label for="matImage">URL da imagem</label>
-      <input type="url" id="matImage" name="image" placeholder="https://..." required>
-
       <label for="matTags">Tags (separadas por vírgula)</label>
       <input type="text" id="matTags" name="tags" placeholder="Ex: Ensino Médio, Física">
 
-      <label for="matArquivoUrl">Link do arquivo para download (opcional)</label>
-      <input type="url" id="matArquivoUrl" name="arquivoUrl" placeholder="https://...">
+      <label>Imagem de capa *</label>
+      <div class="upload-tabs" data-target="Image">
+        <button type="button" class="upload-tab active" data-mode="file">Enviar do computador</button>
+        <button type="button" class="upload-tab" data-mode="url">Colar link</button>
+      </div>
+      <div class="file-picker upload-field-file" id="matImageFileWrap">
+        <label class="file-picker-btn" for="matImageFile">
+          <i class="fa-solid fa-upload"></i> Escolher arquivo
+        </label>
+        <span class="file-picker-name" id="matImageFileName">Nenhum arquivo escolhido</span>
+        <input type="file" id="matImageFile" name="imageFile" accept=".png,.jpg,.jpeg,.gif,.webp" class="file-picker-input">
+      </div>
+      <input type="url" id="matImage" name="image" placeholder="https://..." class="upload-field-url" style="display:none;">
+      <p class="upload-hint">Formatos aceitos: PNG, JPG, GIF, WEBP.</p>
+
+      <label>Arquivo para download (opcional)</label>
+      <div class="upload-tabs" data-target="Arquivo">
+        <button type="button" class="upload-tab active" data-mode="file">Enviar do computador</button>
+        <button type="button" class="upload-tab" data-mode="url">Colar link</button>
+      </div>
+      <div class="file-picker upload-field-file" id="matArquivoFileWrap">
+        <label class="file-picker-btn" for="matArquivoFile">
+          <i class="fa-solid fa-upload"></i> Escolher arquivo
+        </label>
+        <span class="file-picker-name" id="matArquivoFileName">Nenhum arquivo escolhido</span>
+        <input type="file" id="matArquivoFile" name="arquivoFile" accept=".pdf,.doc,.docx,.ppt,.pptx" class="file-picker-input">
+      </div>
+      <input type="url" id="matArquivoUrl" name="arquivoUrl" placeholder="https://..." class="upload-field-url" style="display:none;">
+      <p class="upload-hint">Formatos aceitos: PDF, DOC(X), PPT(X).</p>
 
       <button type="submit" id="adminSubmitBtn">Salvar material</button>
     </form>

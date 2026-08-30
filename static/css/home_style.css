@@ -261,6 +261,8 @@ body {
   border-bottom: 4px solid transparent;
   font-weight: 600;
   color: var(--purple-dark);
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .card:nth-child(1) {

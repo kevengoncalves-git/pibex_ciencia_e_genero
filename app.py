@@ -1,6 +1,11 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_cors import CORS
 
+try:
+    import cloudinary
+except ImportError:
+    cloudinary = None
+
 from config import Config
 from extensions import db
 from models import LabXchangeItem
@@ -134,6 +139,14 @@ def create_app():
 
     db.init_app(app)
     CORS(app, resources={r"/api/*": {"origins": "*"}})
+
+    if cloudinary and app.config.get("CLOUDINARY_CLOUD_NAME"):
+        cloudinary.config(
+            cloud_name=app.config["CLOUDINARY_CLOUD_NAME"],
+            api_key=app.config["CLOUDINARY_API_KEY"],
+            api_secret=app.config["CLOUDINARY_API_SECRET"],
+            secure=True,
+        )
 
     app.register_blueprint(auth_bp)
     app.register_blueprint(materiais_bp)
